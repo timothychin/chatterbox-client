@@ -25,7 +25,13 @@ app.clearMessages = function() {
 };
 
 app.renderMessage = function(message) {
-  $('#chats').html('<blink>' + message + '</blink>');
+  var chat = $('<p class="username"></p>');
+  // var main = $('<p class="username"></p>');
+  chat.text(message.username + ': ' + message.text);
+  $('#chats').append(chat);
+
+  // main.text(message.username);
+  // $('#main').append(main);
 };
 
 app.renderRoom = function(room) {
@@ -40,3 +46,8 @@ app.handleUsernameClick = function() {
 app.handleUsernameClick.restore = function() {
 
 };
+
+$(document).on('click', '.username', function() {
+  app.handleUsernameClick();
+  console.log('clicking');
+});
