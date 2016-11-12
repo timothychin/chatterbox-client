@@ -43,12 +43,16 @@ app.handleUsernameClick = function() {
 
 };
 
-app.handleUsernameClick.restore = function() {
+app.handleSubmit = function() {
 
 };
 
+
 $(document).on('click', '.username', function() {
   app.handleUsernameClick();
-  console.log('clicking');
 });
 
+$(document).on('submit', '#send .submit', function() {
+  app.handleSubmit();
+  console.log('hmmph');
+});
