@@ -12,6 +12,7 @@ app.init = function() {
 };
 
 app.send = function(message) {
+  debugger;
   $.ajax({
     url: app.server,
     data: JSON.stringify(message), 
