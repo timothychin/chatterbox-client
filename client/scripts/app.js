@@ -49,19 +49,40 @@ app.clearMessages = function() {
   $('#chats').children().remove();
 };
 
+app.clearRooms = function () {
+  var currentRoom = $('select').val();
+  var allRooms = $('select').children();
+  for (var i = 0; i < allRooms.length; i++) {
+    if (allRooms[i].value !== currentRoom) {
+      allRooms[i].remove();
+    }
+  }
+  // $('select').children().remove();
+};
+
+
 app.renderMessage = function(message) {
+  debugger;
+  var rooms = [];
+  rooms.push($('select').children().val());
   for (var i = 0; i < message.results.length; i++) {  
-    var chat = $('<p class="username"></p>');
-    // var main = $('<p class="username"></p>');
-    chat.text(message.results[i].username + ': ' + message.results[i].text);
-    $('#chats').append(chat);
+    if (rooms.indexOf(message.results[i].roomname) === -1) {
+      rooms.push(message.results[i].roomname);
+      app.renderRoom(message.results[i].roomname);
+    }
+    if (message.results[i].roomname === $('select').val()) {
+      var chat = $('<p class="username"></p>');
+      // var main = $('<p class="username"></p>');
+      chat.text(message.results[i].username + ': ' + message.results[i].text);
+      $('#chats').append(chat);
+    }
   }
   // main.text(message.username);
   // $('#main').append(main);
 };
 
 app.renderRoom = function(room) {
-  var newRoom = $('<div>' + room + '</div>');
+  var newRoom = $('<option>' + room + '</option>');
   $('#roomSelect').append(newRoom);
 };
 
@@ -86,6 +107,12 @@ $(document).on('click', '.username', function() {
 
 $(document).on('click', '#send .submit', function() {
   app.handleSubmit();
+});
+
+$(document).on('change', 'select', function() {
+  app.clearMessages();
+  app.clearRooms();
+  app.fetch();
 });
 
 app.init();

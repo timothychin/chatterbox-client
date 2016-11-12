@@ -30,6 +30,11 @@ body {
     float: left;
 }
 
+#createRoom {
+    left: 200px;
+    position: relative;
+}
+
 #newRoom .submitRoom {
     float: right;
 }
