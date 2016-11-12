@@ -1,3 +1,4 @@
+//BROKEN CHAT
 // YOUR CODE HERE:
 
 var app = {};
@@ -9,8 +10,6 @@ app.init = function() {
 };
 
 app.send = function(message) {
-  var user;
-  // create username, message, roomname
   $.ajax({
     url: app.server,
     data: JSON.stringify(message), 
@@ -18,12 +17,14 @@ app.send = function(message) {
     contentType: 'application/json',
     success: function (data) {
       console.log('chatterbox: Message sent');
+      app.fetch();
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
       console.error('chatterbox: Failed to send message', data);
     }
-  });  
+  });
+
 };
 
 app.fetch = function() {
@@ -69,9 +70,13 @@ app.handleUsernameClick = function() {
 };
 
 app.handleSubmit = function() {
-  var user = window.location.search;
-  debugger;
-  app.send();
+  var user = window.location.search.split('username=');
+  user = user[1];
+  var input = {};
+  input.username = user;
+  input.text = $('#message').val();
+  input.roomname = $('select').val();  // || $('#roomName').val();
+  app.send(input);
 };
 
 
@@ -81,7 +86,6 @@ $(document).on('click', '.username', function() {
 
 $(document).on('click', '#send .submit', function() {
   app.handleSubmit();
-  console.log('hmmph');
 });
 
 app.init();
