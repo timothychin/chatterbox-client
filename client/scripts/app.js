@@ -62,7 +62,6 @@ app.clearRooms = function () {
 
 
 app.renderMessage = function(message) {
-  debugger;
   var rooms = [];
   rooms.push($('select').children().val());
   for (var i = 0; i < message.results.length; i++) {  
@@ -96,7 +95,13 @@ app.handleSubmit = function() {
   var input = {};
   input.username = user;
   input.text = $('#message').val();
-  input.roomname = $('select').val();  // || $('#roomName').val();
+  if ($('#roomName').val()) {
+    app.renderRoom($('#roomName').val());
+    input.roomname = $('#roomName').val();
+    app.clearMessages();
+  } else {
+    input.roomname = $('select').val();  // || $('#roomName').val();
+  }
   app.send(input);
 };
 
