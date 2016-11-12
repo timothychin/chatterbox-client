@@ -1,8 +1,24 @@
+/* * * * * * * * * * 
+ *                 *
+ *     General     *
+ *                 *
+ * * * * * * * * * */
+
 body {
     background: #eee;
     text-align: center;
     padding: 0 25px;
     font-family: arial, sans-serif;
+}
+
+/* * * * * * * * * * 
+ *                 *
+ *      Main       *
+ *                 *
+ * * * * * * * * * */
+
+.title {
+
 }
 
 #main, #chats {
@@ -58,6 +74,13 @@ form input[type=text] {
     font-size: 12px;
     padding: 5px;
 }
+
+/* * * * * * * * * * 
+ *                 *
+ *      Chat       *
+ *                 *
+ * * * * * * * * * */
+
 
 .chat {
     padding: 5px;
