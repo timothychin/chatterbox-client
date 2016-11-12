@@ -51,3 +51,4 @@ $(document).on('click', '.username', function() {
   app.handleUsernameClick();
   console.log('clicking');
 });
+
