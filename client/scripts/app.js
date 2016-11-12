@@ -5,7 +5,7 @@ var app = {};
 
 app.server = 'https://api.parse.com/1/classes/messages';
 
-app.friends = [];
+app.friends = {};
 
 app.init = function() {
   app.fetch();
@@ -73,6 +73,9 @@ app.renderMessage = function(message) {
     }
     if (message.results[i].roomname === $('select').val()) {
       var chat = $('<p class="username">' + '<a href="#" class="clickUser">' + message.results[i].username + '</a>' + ': ' + message.results[i].text + '</p>');
+      if (app.friends.hasOwnProperty(message.results[i].username)) {
+        chat.css('font-weight', 'bold');
+      }
       // var main = $('<p class="username"></p>');
       // chat.text(message.results[i].username + ': ' + message.results[i].text);
       $('#chats').append(chat);
@@ -88,7 +91,11 @@ app.renderRoom = function(room) {
 };
 
 app.handleUsernameClick = function(user) {
-  app.friends.push(user);
+  app.friends[user] = user;
+  // app.friends.push(user);
+  app.clearMessages();
+  app.clearRooms();
+  app.fetch();
 };
 
 app.handleSubmit = function() {
