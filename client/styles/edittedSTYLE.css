@@ -1,4 +1,3 @@
-/*BROKEN CHAT*/
 /* * * * * * * * * * 
  *                 *
  *     General     *
@@ -18,10 +17,6 @@ body {
  *                 *
  * * * * * * * * * */
 
-#roomSelect {
-    width: 10%;   
-}
-
 #rooms {
     margin-top: 15px;
     position: absolute;
@@ -32,11 +27,6 @@ body {
     margin-top: 10px;
     left: 10%;
     float: left;
-}
-
-#createRoom {
-    left: 200px;
-    position: relative;
 }
 
 #newRoom .submitRoom {

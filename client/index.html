@@ -1,3 +1,4 @@
+<!-- BROKEN CHAT -->
 <!doctype html>
 <html>
   <head>
@@ -7,6 +8,7 @@
 
     <!-- dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <script>
       // YOU DO NOT NEED TO EDIT THIS CODE
       if (!/(&|\?)username=/.test(window.location.search)) {
@@ -24,8 +26,25 @@
   </head>
   <body>
     <div id="main">
-      <h1>chatterbox</h1>
+      <h1 class="title">CHATTERBOX</h1>
+      <!-- <div class="spinner"><img src="client/images/spiffygif_46x46.gif"></div> -->
       <!-- Your HTML goes here! -->
+      <div id="rooms">
+        Room:
+        <select id="roomSelect">
+          <!-- <option>Lobby</option> -->
+        </select>
+      </div>
+      <div id="createRoom">
+        <form id="newRoom">
+          <input type="text" placeholder="Create new room" name="roomName" id="roomName">
+          <!-- <input type="submit" name="submitRoom" class="submitRoom"> -->
+        </form>
+      </div>
+      <form action="#" id="send" method="post">
+        <input type="text" name="message" id="message"/>
+        <input type="submit" name="submit" class="submit"/>
+      </form>
     </div>
     <div id="chats"></div>
   </body>

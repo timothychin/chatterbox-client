@@ -42,7 +42,7 @@ describe('chatterbox', function() {
           text: 'It\'s good to be the king',
           roomname: 'lobby'
         };
-
+        
         app.send(message);
         ajaxOptions = typeof $.ajax.args[0][0] === 'object' ? $.ajax.args[0][0] : $.ajax.args[0][1];
         var result = JSON.parse(ajaxOptions.data);
@@ -97,7 +97,6 @@ describe('chatterbox', function() {
     describe('events', function() {
       it('should add a friend upon clicking their username', function() {
         sinon.spy(app, 'handleUsernameClick');
-
         app.renderMessage({
           username: 'Mel Brooks',
           text: 'I didn\'t get a harumph outa that guy.!',
@@ -105,10 +104,9 @@ describe('chatterbox', function() {
         });
 
         app.init();
-
         $('#main').find('.username').trigger('click');
+        // debugger;
         expect(app.handleUsernameClick.called).to.be.true;
-
         app.handleUsernameClick.restore();
       });
 
@@ -118,7 +116,6 @@ describe('chatterbox', function() {
         $('#message').val('Why so many Mel Brooks quotes?');
 
         app.init();
-
         $('#send .submit').trigger('submit');
         expect(app.handleSubmit.calledOnce).to.be.true;
 
