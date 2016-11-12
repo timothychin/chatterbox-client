@@ -5,6 +5,8 @@ var app = {};
 
 app.server = 'https://api.parse.com/1/classes/messages';
 
+app.friends = [];
+
 app.init = function() {
   app.fetch();
 };
@@ -70,9 +72,9 @@ app.renderMessage = function(message) {
       app.renderRoom(message.results[i].roomname);
     }
     if (message.results[i].roomname === $('select').val()) {
-      var chat = $('<p class="username"></p>');
+      var chat = $('<p class="username">' + '<a href="#" class="clickUser">' + message.results[i].username + '</a>' + ': ' + message.results[i].text + '</p>');
       // var main = $('<p class="username"></p>');
-      chat.text(message.results[i].username + ': ' + message.results[i].text);
+      // chat.text(message.results[i].username + ': ' + message.results[i].text);
       $('#chats').append(chat);
     }
   }
@@ -85,8 +87,8 @@ app.renderRoom = function(room) {
   $('#roomSelect').append(newRoom);
 };
 
-app.handleUsernameClick = function() {
-
+app.handleUsernameClick = function(user) {
+  app.friends.push(user);
 };
 
 app.handleSubmit = function() {
@@ -106,9 +108,9 @@ app.handleSubmit = function() {
 };
 
 
-$(document).on('click', '.username', function() {
-  app.handleUsernameClick();
-});
+// $(document).on('click', '.username', function() {
+//   app.handleUsernameClick();
+// });
 
 $(document).on('click', '#send .submit', function() {
   app.handleSubmit();
@@ -118,6 +120,14 @@ $(document).on('change', 'select', function() {
   app.clearMessages();
   app.clearRooms();
   app.fetch();
+});
+
+$(document).on('click', '.clickUser', function() {
+  // debugger;
+  var thisUser = $(this)[0].textContent;
+  console.log(thisUser);
+  app.handleUsernameClick(thisUser);
+
 });
 
 app.init();
