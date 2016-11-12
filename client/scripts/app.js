@@ -32,6 +32,7 @@ app.fetch = function() {
     url: app.server,
     type: 'GET',
     contentType: 'application/json',
+    data: 'order=-createdAt',
     success: function (data) {
       messageReceived = data;
       app.renderMessage(messageReceived);
@@ -68,7 +69,9 @@ app.handleUsernameClick = function() {
 };
 
 app.handleSubmit = function() {
-
+  var user = window.location.search;
+  debugger;
+  app.send();
 };
 
 
@@ -76,7 +79,7 @@ $(document).on('click', '.username', function() {
   app.handleUsernameClick();
 });
 
-$(document).on('submit', '#send .submit', function() {
+$(document).on('click', '#send .submit', function() {
   app.handleSubmit();
   console.log('hmmph');
 });
