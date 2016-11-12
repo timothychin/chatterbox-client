@@ -42,7 +42,7 @@ describe('chatterbox', function() {
           text: 'It\'s good to be the king',
           roomname: 'lobby'
         };
-
+        
         app.send(message);
         ajaxOptions = typeof $.ajax.args[0][0] === 'object' ? $.ajax.args[0][0] : $.ajax.args[0][1];
         var result = JSON.parse(ajaxOptions.data);
@@ -97,7 +97,7 @@ describe('chatterbox', function() {
     describe('events', function() {
       it('should add a friend upon clicking their username', function() {
         sinon.spy(app, 'handleUsernameClick');
-
+        debugger;
         app.renderMessage({
           username: 'Mel Brooks',
           text: 'I didn\'t get a harumph outa that guy.!',
