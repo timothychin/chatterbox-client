@@ -12,7 +12,6 @@ app.init = function() {
 };
 
 app.send = function(message) {
-  debugger;
   $.ajax({
     url: app.server,
     data: JSON.stringify(message), 
@@ -67,14 +66,20 @@ app.clearRooms = function () {
 app.renderMessage = function(message) {
   var rooms = [];
   rooms.push($('select').children().val());
+  // debugger;
   for (var i = 0; i < message.results.length; i++) {  
-    if (rooms.indexOf(message.results[i].roomname) === -1) {
-      rooms.push(message.results[i].roomname);
-      app.renderRoom(message.results[i].roomname);
+    var filteredUser = app.filterInput(message.results[i].username);
+    var filteredText = app.filterInput(message.results[i].text);
+    var filteredRoom = app.filterInput(message.results[i].roomname);
+    // debugger;
+    // console.log(filteredText);
+    if (rooms.indexOf(filteredRoom) === -1) {
+      rooms.push(filteredRoom);
+      app.renderRoom(filteredRoom);
     }
-    if (message.results[i].roomname === $('select').val()) {
-      var chat = $('<p class="username">' + '<a href="#" class="clickUser">' + message.results[i].username + '</a>' + ': ' + message.results[i].text + '</p>');
-      if (app.friends.hasOwnProperty(message.results[i].username)) {
+    if (filteredRoom === $('select').val()) {
+      var chat = $('<p class="username">' + '<a href="#" class="clickUser">' + filteredUser + '</a>' + ': ' + filteredText + '</p>');
+      if (app.friends.hasOwnProperty(filteredUser)) {
         chat.css('font-weight', 'bold');
       }
       // var main = $('<p class="username"></p>');
@@ -100,19 +105,42 @@ app.handleUsernameClick = function(user) {
 };
 
 app.handleSubmit = function() {
+  var input = {}; 
   var user = window.location.search.split('username=');
   user = user[1];
-  var input = {};
-  input.username = user;
-  input.text = $('#message').val();
+  input.username = app.filterInput(user);
+  input.text = app.filterInput($('#message').val());
   if ($('#roomName').val()) {
     app.renderRoom($('#roomName').val());
-    input.roomname = $('#roomName').val();
+    input.roomname = app.filterInput($('#roomName').val());
     app.clearMessages();
   } else {
-    input.roomname = $('select').val();  // || $('#roomName').val();
+    input.roomname = app.filterInput($('#roomName').val());
   }
   app.send(input);
+};
+
+app.filterInput = function(string) {
+  // debugger;
+  if (typeof string !== 'string') {
+    string = '';
+  }
+  var filter = {
+    '<': '&lt;',
+    '>': '&gt;',
+    '$': '&#36;',
+    '"': '&quot;',
+    "'": '&#39'
+  };
+  var filteredString = '';
+  for (var i = 0; i < string.length; i++) {
+    if (filter.hasOwnProperty(string[i])) {
+      filteredString += filter[string[i]];
+    } else {
+      filteredString += string[i];
+    }
+  }
+  return filteredString;
 };
 
 
