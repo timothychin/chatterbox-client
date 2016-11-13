@@ -1,5 +1,6 @@
-//BROKEN CHAT
 // YOUR CODE HERE:
+
+console.log('app is running');
 
 var app = {};
 
@@ -78,7 +79,7 @@ app.renderMessage = function(message) {
       app.renderRoom(filteredRoom);
     }
     if (filteredRoom === $('select').val()) {
-      var chat = $('<p class="username">' + '<a href="#" class="clickUser">' + filteredUser + '</a>' + ': ' + filteredText + '</p>');
+      var chat = $('<p class="username" id="chat">' + '<a href="#" class="clickUser">' + filteredUser + '</a>' + ': ' + filteredText + '</p>');
       if (app.friends.hasOwnProperty(filteredUser)) {
         chat.css('font-weight', 'bold');
       }

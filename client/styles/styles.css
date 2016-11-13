@@ -1,4 +1,3 @@
-/*BROKEN CHAT*/
 /* * * * * * * * * * 
  *                 *
  *     General     *
@@ -6,10 +5,22 @@
  * * * * * * * * * */
 
 body {
-    background: #eee;
     text-align: center;
     padding: 0 25px;
-    font-family: arial, sans-serif;
+    font-family: avenir;
+}
+
+#background {
+    background-image: url('sky.jpg');
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -1;
 }
 
 /* * * * * * * * * * 
@@ -27,6 +38,10 @@ body {
     position: absolute;
 }
 
+#roomName {
+    width: 100%;
+}
+
 #newRoom {
     position: relative;
     margin-top: 10px;
@@ -35,7 +50,7 @@ body {
 }
 
 #createRoom {
-    left: 200px;
+    left: 100px;
     position: relative;
 }
 
@@ -43,11 +58,10 @@ body {
     float: right;
 }
 
-/*<form id="newRoom">
-            <input type="text" name="roomName">
-            <input type="submit" name="submitRoom" class="submitRoom">
-          </form>
-*/
+#message {
+    margin-top: 10px;
+    width: ;
+}
 
 
 /* * * * * * * * * * 
@@ -56,10 +70,15 @@ body {
  *                 *
  * * * * * * * * * */
 
+#title {
+    margin-bottom: 20px;
+}
+
 .title {
-    font-family: avenir;
+    font-family: didot;
     letter-spacing: 10px;
     border-bottom: 1px solid black;
+    margin-bottom: 20px;
 }
 
 #main, #chats {
@@ -71,6 +90,7 @@ body {
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
     /*box-shadow: 10px 0px 10px lightgrey*/
+    opacity: 0.7;
 }
 
 #main h1 {
@@ -108,15 +128,42 @@ form #send {
     padding: 20px;
     padding-left: 0;
     margin-bottom: 20px;
-    marginq-top: 25px;
+    margin-top: 25px;
 }
 
 form input[type=text] {
-    margin-right: 10px;
-    width: 70%;
-    font-size: 12px;
-    padding: 5px;
+    font-size: 15px; 
+    width: 75%; 
+    height: 5%;
+    border-radius: 10px;
+    border: 1px solid #e6e6e6;
+    background: white;
+    padding: 8px;
+    outline: none;
 }
+
+form input[type=submit] {
+    font-family: avenir;
+    height: 5%;
+    font-size: 14px;
+    padding:5px 15px; 
+    background:#f2f2f2; 
+    border: 1px solid #d9d9d9;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    opacity: 0.8;
+}
+
+select option {
+    font-family: avenir;
+}
+
+select {
+    opacity: 0.9;
+}
+
+
 
 /* * * * * * * * * * 
  *                 *
@@ -126,17 +173,21 @@ form input[type=text] {
 
 
 #chat {
-    padding: 5px;
+    padding: 15px;
     margin-bottom: 5px;
-    background-color: #eee;
+    background-color: white;
+    border: 1px solid #f2f2f2;
+    box-shadow: 2px 2px 1px #f2f2f2;
+    overflow: hidden;
 }
 
 #chat .username {
     font-weight: 800;
+    text-decoration: none;
 }
 
 #chat:hover {
-    background-color: #ddd;
+    background-color: #e6e6e6;
 }
 
 .spinner {

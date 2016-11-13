@@ -1,4 +1,3 @@
-<!-- BROKEN CHAT -->
 <!doctype html>
 <html>
   <head>
@@ -25,24 +24,23 @@
     <script src="scripts/app.js"></script>
   </head>
   <body>
+    <div id="background"></div>
     <div id="main">
-      <h1 class="title">CHATTERBOX</h1>
-      <!-- <div class="spinner"><img src="client/images/spiffygif_46x46.gif"></div> -->
-      <!-- Your HTML goes here! -->
+      <div id="title">
+        <h1 class="title">CHATTERBOX</h1>
+      </div>
       <div id="rooms">
         Room:
         <select id="roomSelect">
-          <!-- <option>Lobby</option> -->
         </select>
       </div>
       <div id="createRoom">
         <form id="newRoom">
           <input type="text" placeholder="Create new room" name="roomName" id="roomName">
-          <!-- <input type="submit" name="submitRoom" class="submitRoom"> -->
         </form>
       </div>
       <form action="#" id="send" method="post">
-        <input type="text" name="message" id="message"/>
+        <input type="text" placeholder="Send a message" name="message" id="message"/>
         <input type="submit" name="submit" class="submit"/>
       </form>
     </div>
